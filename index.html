@@ -37,20 +37,20 @@
         @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
-<body class="bg-pink-200 min-h-screen flex justify-center items-center overflow-hidden relative selection:bg-pink-500 selection:text-white">
+<body class="bg-pink-200 min-h-screen relative selection:bg-pink-500 selection:text-white overflow-y-auto overflow-x-hidden">
 
     <audio id="bgMusic" loop>
         <source src="lagu.mp3" type="audio/mpeg">
     </audio>
 
-    <div id="decor-page1" class="transition-opacity duration-1000 ease-in-out absolute inset-0 pointer-events-none z-0">
+    <div id="decor-page1" class="transition-opacity duration-1000 ease-in-out fixed inset-0 pointer-events-none z-0">
         <img src="img/hert.svg" class="absolute top-2 left-2 w-16 md:w-40 opacity-80 md:opacity-90">
         <img src="img/date.svg" class="absolute top-10 right-2 md:top-20 md:right-10 w-16 md:w-40 rotate-12 opacity-80 md:opacity-90">
         <img src="img/kapal.svg" class="absolute bottom-2 left-2 w-20 md:w-48 opacity-80 md:opacity-90">
         <img src="img/choclate.svg" class="absolute bottom-2 right-2 w-16 md:w-40 opacity-80 md:opacity-90">
     </div>
     
-    <div id="decor-page2" class="opacity-0 transition-opacity duration-1000 ease-in-out absolute inset-0 pointer-events-none hidden z-0">
+    <div id="decor-page2" class="opacity-0 transition-opacity duration-1000 ease-in-out fixed inset-0 pointer-events-none hidden z-0">
         <div class="absolute top-2 left-0 md:top-10 md:left-10 transform -rotate-6 bg-white p-1 md:p-2 shadow-lg rounded-lg">
             <img src="img/foto 3.jpeg" class="w-14 h-20 md:w-48 md:h-64 object-cover rounded-md">
         </div>
@@ -66,7 +66,7 @@
     </div>
 
 
-    <div id="page1" class="text-center z-50 w-full max-w-md px-4 relative transition-opacity duration-1000 ease-in-out">
+    <div id="page1" class="min-h-screen flex flex-col justify-center items-center text-center z-50 w-full max-w-md px-4 relative transition-opacity duration-1000 ease-in-out py-10">
         <img src="img/lucu.svg" class="w-32 h-32 md:w-40 md:h-40 mx-auto mb-4 object-contain drop-shadow-xl animate-bounce-slow">
         <h1 class="text-3xl md:text-5xl font-bold text-pink-600 mb-6 md:mb-8 leading-snug drop-shadow-sm">Hey ayang,<br>Maukah kamu jadi kesayanganku?</h1>
         
@@ -77,23 +77,23 @@
     </div>
 
 
-    <div id="page2" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out text-center z-50 w-full max-w-4xl px-4 relative">
+    <div id="page2" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out min-h-screen flex flex-col justify-center items-center text-center z-50 w-full max-w-4xl px-4 relative py-20">
         <h1 class="text-3xl md:text-6xl font-bold text-red-500 mb-2 drop-shadow-md relative z-50">Yay, kamu mengatakan iya!</h1>
-        <p class="text-sm md:text-xl text-red-400 mb-6 md:mb-12 font-bold bg-white/80 inline-block px-4 py-1 rounded-full backdrop-blur-sm relative z-50">Pilih satu kotak ya, isinya rahasia! 🤫</p>
+        <p class="text-sm md:text-xl text-red-400 mb-8 md:mb-12 font-bold bg-white/80 inline-block px-4 py-1 rounded-full backdrop-blur-sm relative z-50">Pilih satu kotak ya, isinya rahasia! 🤫</p>
         
-        <div class="flex flex-col md:flex-row justify-center items-center gap-3 md:gap-10 relative z-50">
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 relative z-50 w-full">
             <div onclick="openGift(0)" class="cursor-pointer group relative z-50 transform hover:scale-105 transition duration-300 w-full md:w-auto flex justify-center">
-                <div class="bg-red-300 w-64 h-20 md:w-52 md:h-40 rounded-2xl md:rounded-3xl border-4 border-red-500 shadow-xl flex items-center justify-center group-hover:bg-red-400">
+                <div class="bg-red-300 w-64 h-24 md:w-52 md:h-40 rounded-2xl md:rounded-3xl border-4 border-red-500 shadow-xl flex items-center justify-center group-hover:bg-red-400">
                     <span class="text-xl md:text-2xl text-white font-bold underline decoration-wavy">Kotak 1</span>
                 </div>
             </div>
             <div onclick="openGift(1)" class="cursor-pointer group relative z-50 transform hover:scale-105 transition duration-300 w-full md:w-auto flex justify-center">
-                <div class="bg-red-300 w-64 h-20 md:w-52 md:h-40 rounded-2xl md:rounded-3xl border-4 border-red-500 shadow-xl flex items-center justify-center group-hover:bg-red-400">
+                <div class="bg-red-300 w-64 h-24 md:w-52 md:h-40 rounded-2xl md:rounded-3xl border-4 border-red-500 shadow-xl flex items-center justify-center group-hover:bg-red-400">
                     <span class="text-xl md:text-2xl text-white font-bold underline decoration-wavy">Kotak 2</span>
                 </div>
             </div>
             <div onclick="openGift(2)" class="cursor-pointer group relative z-50 transform hover:scale-105 transition duration-300 w-full md:w-auto flex justify-center">
-                <div class="bg-red-300 w-64 h-20 md:w-52 md:h-40 rounded-2xl md:rounded-3xl border-4 border-red-500 shadow-xl flex items-center justify-center group-hover:bg-red-400">
+                <div class="bg-red-300 w-64 h-24 md:w-52 md:h-40 rounded-2xl md:rounded-3xl border-4 border-red-500 shadow-xl flex items-center justify-center group-hover:bg-red-400">
                     <span class="text-xl md:text-2xl text-white font-bold underline decoration-wavy">Kotak 3</span>
                 </div>
             </div>
@@ -101,10 +101,10 @@
     </div>
 
 
-    <div id="page3" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out text-center z-50 w-full min-h-screen relative p-4 flex flex-col justify-center items-center">
-        <h1 id="giftTitle" class="text-3xl md:text-5xl font-bold text-red-600 mb-6 md:mb-8 drop-shadow-md z-50">Hadiah Buat Kamu</h1>
+    <div id="page3" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out min-h-screen flex flex-col justify-center items-center text-center z-50 w-full relative p-4 py-20">
+        <h1 id="giftTitle" class="text-3xl md:text-5xl font-bold text-red-600 mb-8 drop-shadow-md z-50 mt-10 md:mt-0">Hadiah Buat Kamu</h1>
         
-        <div class="relative w-full max-w-5xl flex flex-col md:block items-center justify-center gap-4 md:gap-0 md:h-[600px] z-40">
+        <div class="relative w-full max-w-5xl flex flex-col md:block items-center justify-center gap-6 md:gap-0 md:h-[600px] z-40 mb-8">
             
             <div class="relative md:absolute md:top-0 md:left-20 bg-white p-3 md:p-4 rounded-2xl shadow-xl w-full md:w-auto max-w-xs transform md:-rotate-2 z-50 animate-float order-2 md:order-none">
                 <p class="text-pink-600 text-sm md:text-lg handwriting">"I will always love you no matter what"</p>
@@ -128,15 +128,15 @@
             </div>
         </div>
 
-        <button onclick="goToPage4()" class="mt-8 bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center gap-2 transition transform hover:scale-105 z-50 cursor-pointer animate-bounce text-lg">
+        <button onclick="goToPage4()" class="mt-4 bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center gap-2 transition transform hover:scale-105 z-50 cursor-pointer animate-bounce text-lg mb-10">
             💌 Baca Suratnya
         </button>
     </div>
 
 
-    <div id="page4" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out flex flex-col justify-center items-center z-50 w-full min-h-screen relative p-4">
+    <div id="page4" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out min-h-screen flex flex-col justify-center items-center z-50 w-full relative p-4 py-20">
         
-        <div class="paper-bg relative p-6 md:p-12 max-w-2xl w-full transform rotate-1 rounded-lg overflow-hidden mb-8 shadow-2xl z-50">
+        <div class="paper-bg relative p-6 md:p-12 max-w-2xl w-full transform rotate-1 rounded-lg overflow-hidden mb-8 shadow-2xl z-50 mt-10">
             <img src="https://cdn-icons-png.flaticon.com/512/9686/9686583.png" class="absolute bottom-0 left-0 w-20 md:w-32 opacity-80 z-10">
             <div class="absolute top-4 right-4 md:right-6 text-red-500 handwritten text-2xl md:text-4xl font-bold opacity-70 transform -rotate-12">Ci Xantik</div>
 
@@ -151,7 +151,7 @@
             </div>
         </div>
 
-        <button onclick="shareToWA()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 md:px-8 rounded-full shadow-lg flex items-center gap-2 transition transform hover:scale-105 z-50 cursor-pointer mb-10 text-sm md:text-base">
+        <button onclick="shareToWA()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 md:px-8 rounded-full shadow-lg flex items-center gap-2 transition transform hover:scale-105 z-50 cursor-pointer mb-20 text-sm md:text-base">
             <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" class="w-5 h-5 md:w-6 md:h-6 invert" alt="WA">
             Kirim Balasan ke WA
         </button>
@@ -164,7 +164,6 @@
         let fullLetterText = "";
         let typingInterval;
 
-        // DATA HADIAH (Ganti Link Image sesuai file kamu)
         const giftList = [
             {
                 name: "Coklat Valentine",
@@ -183,7 +182,6 @@
             }
         ];
 
-        // Acak Hadiah
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
