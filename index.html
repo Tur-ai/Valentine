@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+        
+        body, button, h1, span { font-family: 'Fredoka One', cursive; }
+        .handwritten { font-family: 'Patrick Hand', cursive; }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .animate-heart { animation: heartbeat 1s infinite; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+
+        .paper-bg {
+            background-color: #fffdf0;
+            background-image: repeating-linear-gradient(transparent, transparent 27px, #a0b0c0 28px);
+            background-size: 100% 28px;
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+        }
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body class="bg-pink-200 min-h-screen flex justify-center items-center overflow-hidden relative">
+
+    <audio id="bgMusic" loop>
+        <source src="lagu.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="decor-page1" class="transition-opacity duration-1000 ease-in-out absolute inset-0 pointer-events-none z-10">
+        <img src="img/hert.svg" class="absolute top-0 left-0 w-32 md:w-52 opacity-90">
+        <img src="img/date.svg" class="absolute top-10 right-10 md:top-20 md:right-20 w-32 md:w-52 rotate-12 opacity-90">
+        <img src="img/kapal.svg" class="absolute bottom-0 left-0 w-36 md:w-60 opacity-90">
+        <img src="img/choclate.svg" class="absolute bottom-0 right-0 w-32 md:w-52 opacity-90">
+    </div>
+    
+    <div id="decor-page2" class="opacity-0 transition-opacity duration-1000 ease-in-out absolute inset-0 pointer-events-none hidden z-10">
+        <div class="absolute top-10 left-4 md:left-10 transform -rotate-6 bg-white p-2 shadow-xl rounded-lg"><img src="img/foto 3.jpeg" class="w-32 h-40 md:w-48 md:h-64 object-cover rounded-md"></div>
+        <div class="absolute bottom-20 left-8 md:bottom-32 md:left-20 transform rotate-12 bg-white p-2 shadow-xl rounded-lg z-10"><img src="img/foto 4.jpeg" class="w-28 h-36 md:w-40 md:h-56 object-cover rounded-md"></div>
+        <div class="absolute top-10 right-4 md:right-10 transform -rotate-6 bg-white p-2 shadow-xl rounded-lg"><img src="img/foto 2.jpg" class="w-36 h-48 md:w-52 md:h-72 object-cover rounded-md"></div>
+        <div class="absolute bottom-10 right-4 md:right-10 transform -rotate-6 bg-white p-2 shadow-xl rounded-lg"><img src="img/foto 2.jpeg" class="w-28 h-36 md:w-40 md:h-56 object-cover rounded-md"></div>
+    </div>
+
+
+    <div id="page1" class="text-center z-20 max-w-md mx-4 relative transition-opacity duration-1000 ease-in-out">
+        <img src="img/lucu.svg" class="w-40 h-40 mx-auto mb-4 object-contain drop-shadow-xl animate-bounce-slow">
+        <h1 class="text-4xl md:text-5xl font-bold text-pink-600 mb-8 leading-snug drop-shadow-sm">Hey ayang,<br>Maukah kamu jadi kesayanganku?</h1>
+        <div class="flex gap-6 justify-center items-center relative h-20">
+            <button onclick="goToPage2()" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-xl transition transform hover:scale-110 text-xl z-30 border-2 border-white cursor-pointer">Iya Cayang</button>
+            <button id="noBtn" onmouseover="moveButton()" ontouchstart="moveButton()" class="bg-white hover:bg-gray-100 text-pink-500 font-bold py-3 px-8 rounded-full shadow-xl transition-all duration-150 text-xl absolute right-0 md:static z-30 border-2 border-pink-200 cursor-pointer">Tidak, Terima Kasih</button>
+        </div>
+    </div>
+
+
+    <div id="page2" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out text-center z-20 w-full max-w-4xl px-4 relative">
+        <h1 class="text-5xl md:text-6xl font-bold text-red-500 mb-2 drop-shadow-md">Yay, kamu megatakan iya!</h1>
+        <p class="text-xl text-red-400 mb-12 font-bold bg-white/50 inline-block px-4 py-1 rounded-full">Pilih satu kotak ya, isinya rahasia! 🤫</p>
+        
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10">
+            <div onclick="openGift(0)" class="cursor-pointer group relative z-30">
+                <div class="bg-red-300 w-40 h-32 md:w-52 md:h-40 rounded-3xl border-4 border-red-500 shadow-xl flex items-center justify-center transform transition group-hover:-translate-y-2 group-hover:bg-red-400">
+                    <span class="text-2xl text-white font-bold underline decoration-wavy">Kotak 1</span>
+                </div>
+            </div>
+            <div onclick="openGift(1)" class="cursor-pointer group relative z-30">
+                <div class="bg-red-300 w-40 h-32 md:w-52 md:h-40 rounded-3xl border-4 border-red-500 shadow-xl flex items-center justify-center transform transition group-hover:-translate-y-2 group-hover:bg-red-400">
+                    <span class="text-2xl text-white font-bold underline decoration-wavy">Kotak 2</span>
+                </div>
+            </div>
+            <div onclick="openGift(2)" class="cursor-pointer group relative z-30">
+                <div class="bg-red-300 w-40 h-32 md:w-52 md:h-40 rounded-3xl border-4 border-red-500 shadow-xl flex items-center justify-center transform transition group-hover:-translate-y-2 group-hover:bg-red-400">
+                    <span class="text-2xl text-white font-bold underline decoration-wavy">Kotak 3</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="page3" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out text-center z-50 w-full h-full relative p-4 flex flex-col justify-center items-center">
+        <h1 id="giftTitle" class="text-4xl md:text-5xl font-bold text-red-600 mb-8 drop-shadow-md">Hadiah Buat Kamu</h1>
+        
+        <div class="relative w-full max-w-5xl h-[60vh] md:h-[600px] flex justify-center items-center">
+            <div class="animate-float absolute top-0 left-4 md:top-10 md:left-20 bg-white p-4 rounded-2xl shadow-xl max-w-[150px] md:max-w-[250px] transform -rotate-2 z-20"><p class="text-pink-600 text-sm md:text-lg handwriting">"I will always love you no matter what"</p><div class="text-red-400 text-xs mt-1">❤️</div></div>
+            <div class="animate-float absolute bottom-0 left-4 md:bottom-20 md:left-10 bg-white p-4 rounded-2xl shadow-xl max-w-[150px] md:max-w-[250px] transform rotate-3 z-20" style="animation-delay: 1s;"><p class="text-pink-600 text-sm md:text-lg handwriting">"You are the best part of my life"</p></div>
+            
+            <div class="relative z-10 p-2 md:p-4 border-4 border-red-400 border-dashed rounded-3xl bg-white/30 backdrop-blur-sm">
+                <img id="giftImage" src="" class="w-48 h-64 md:w-80 md:h-96 object-cover rounded-2xl shadow-2xl" alt="Hadiah">
+            </div>
+
+            <div class="animate-float absolute top-0 right-4 md:top-10 md:right-20 bg-white p-4 rounded-2xl shadow-xl max-w-[150px] md:max-w-[250px] transform rotate-2 z-20" style="animation-delay: 0.5s;"><p class="text-pink-600 text-sm md:text-lg handwriting">"You will forever be my only option"</p></div>
+            <div class="animate-float absolute bottom-0 right-4 md:bottom-20 md:right-10 bg-white p-4 rounded-2xl shadow-xl max-w-[150px] md:max-w-[250px] transform -rotate-3 z-20" style="animation-delay: 1.5s;"><p class="text-pink-600 text-sm md:text-lg handwriting">"I can't imagine a life without you in it"</p></div>
+        </div>
+
+        <button onclick="goToPage4()" class="mt-8 bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center gap-2 transition transform hover:scale-105 z-50 cursor-pointer">
+            💌 Baca Suratnya
+        </button>
+    </div>
+
+
+    <div id="page4" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out flex flex-col justify-center items-center z-50 w-full h-full relative p-4">
+        
+        <div class="paper-bg relative p-8 md:p-12 max-w-2xl w-full mx-4 transform rotate-1 rounded-lg overflow-hidden mb-8">
+            <img src="img/cat.svg" class="absolute bottom-0 left-0 w-24 md:w-32 opacity-90 z-10" alt="Cute Cat">
+            <div class="absolute top-4 right-6 text-red-500 handwritten text-3xl md:text-4xl font-bold opacity-70 transform -rotate-12">Ci Xantik</div>
+
+            <div class="handwritten text-gray-800 text-lg md:text-2xl leading-loose md:leading-[2.5rem] relative z-20 pl-4">
+                <p class="font-bold text-red-600 mb-4">To the love of my life,</p>
+                
+                <p id="typed-letter-body" class="min-h-[200px] typing-cursor">
+                    Tawamu bukan sekedar gurau, tapi cara semesta menyembuhkan senduku. Dan sejak itu, aku mulai menanti harimu masuk ke hariku. <br>Logika pun dibuat tak berdaya oleh senyum sederhana. <br> Indah sekali ya kamu, seperti bulan yang tak pernah berisik memamerkan cahaya, tapi selalu cukup untuk menenangkan hati. <br> Di antara miliar detak jantung di dunia, aku bersyukur semesta menuntun ritmeku untuk selaras denganmu. Selamat Hari Valentine, Sang Pemilik Tenang di riuhnya duniaku. <br><br>Hidup tanpa musik adalah kekeliruan. Tapi hidup tanpa suaramu adalah kesunyian yang terlalu berkarat <br>#Kesayanganmu (F)
+                </p>
+                
+                <p class="font-bold text-red-600 mt-6 text-right">Love You Ayang ❤️</p>
+            </div>
+        </div>
+
+        <button onclick="shareToWA()" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg flex items-center gap-2 transition transform hover:scale-105 z-50 cursor-pointer mb-10">
+            <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" class="w-6 h-6 invert" alt="WA">
+            Kirim Balasan ke WA
+        </button>
+    </div>
+
+
+    <script>
+        let hoverCount = 0;
+        let selectedGiftName = ""; 
+        let fullLetterText = "";
+        let typingInterval;
+
+        const giftList = [
+            {
+                name: "Coklat Valentine",
+                image: "img/coklat.svg", 
+                msgWA: "Ayang, aku udah buka webnya! Aku dapet *Coklat Valentine*! 🍫 Makasih ya sayang, manis banget... ❤️"
+            },
+            {
+                name: "Bunga Spesial",
+                image: "img/bunga.svg",
+                msgWA: "Ayang, aku udah buka webnya! Aku dapet *Bunga Spesial*! 🌹 Makasih ya sayang, cantik banget... ❤️"
+            },
+            {
+                name: "Es Krim Dingin",
+                image: "img/eskrim.svg",
+                msgWA: "Ayang, aku udah buka webnya! Aku dapet *Es Krim*! 🍦 Makasih ya sayang, seger banget... ❤️"
+            }
+        ];
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+        shuffleArray(giftList);
+
+        function startTypewriter() {
+            const letterElement = document.getElementById('typed-letter-body');
+            if (!fullLetterText) fullLetterText = letterElement.innerHTML; 
+            letterElement.innerHTML = ""; 
+            letterElement.classList.add('typing-cursor'); 
+            
+            let currentCharIndex = 0;
+            clearInterval(typingInterval); 
+
+            typingInterval = setInterval(() => {
+                if (fullLetterText[currentCharIndex] === '<') {
+                    const closingIndex = fullLetterText.indexOf('>', currentCharIndex);
+                    letterElement.innerHTML += fullLetterText.substring(currentCharIndex, closingIndex + 1);
+                    currentCharIndex = closingIndex + 1;
+                } else {
+                    letterElement.innerHTML += fullLetterText[currentCharIndex];
+                    currentCharIndex++;
+                }
+                if (currentCharIndex >= fullLetterText.length) {
+                    clearInterval(typingInterval);
+                    letterElement.classList.remove('typing-cursor'); 
+                }
+            }, 40); 
+        }
+
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            noBtn.style.position = 'fixed';
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 50) + 25;
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50) + 25;
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+            hoverCount++;
+            if (hoverCount > 5) noBtn.style.transform = `scale(${1 - (hoverCount-5)*0.1})`;
+        }
+
+        function goToPage2() {
+            const page1 = document.getElementById('page1');
+            const decor1 = document.getElementById('decor-page1');
+            const page2 = document.getElementById('page2');
+            const decor2 = document.getElementById('decor-page2');
+            createConfetti();
+            page1.classList.add('opacity-0');
+            decor1.classList.add('opacity-0');
+            setTimeout(() => {
+                page1.style.display = 'none';
+                decor1.style.display = 'none';
+                page2.classList.remove('hidden');
+                decor2.classList.remove('hidden');
+                setTimeout(() => {
+                    page2.classList.remove('opacity-0');
+                    decor2.classList.remove('opacity-0');
+                }, 50);
+            }, 1000);
+        }
+
+        function openGift(index) {
+            const gift = giftList[index];
+            selectedGiftName = gift.msgWA;
+            document.getElementById('giftTitle').innerText = "Selamat! Kamu Dapat " + gift.name + " ❤️";
+            document.getElementById('giftImage').src = gift.image;
+
+            // === PLAY MUSIC HERE ===
+            const music = document.getElementById('bgMusic');
+            if(music) {
+                music.play().catch(error => {
+                    console.log("Autoplay blocked, user needs to interact first.");
+                });
+            }
+
+            const page2 = document.getElementById('page2');
+            const decor2 = document.getElementById('decor-page2');
+            const page3 = document.getElementById('page3');
+
+            page2.classList.add('opacity-0');
+            decor2.classList.add('opacity-0');
+            setTimeout(() => {
+                page2.style.display = 'none';
+                decor2.style.display = 'none';
+                page3.classList.remove('hidden');
+                setTimeout(() => {
+                    page3.classList.remove('opacity-0');
+                }, 50);
+                createConfetti();
+            }, 1000);
+        }
+
+        function goToPage4() {
+            const page3 = document.getElementById('page3');
+            const page4 = document.getElementById('page4');
+            page3.classList.add('opacity-0');
+            setTimeout(() => {
+                page3.style.display = 'none';
+                page4.classList.remove('hidden');
+                setTimeout(() => {
+                    page4.classList.remove('opacity-0');
+                    startTypewriter();
+                }, 50);
+                createConfetti();
+            }, 1000);
+        }
+
+        function shareToWA() {
+            const url = `https://wa.me/?text=${encodeURIComponent(selectedGiftName)}`;
+            window.open(url, '_blank');
+        }
+
+        function createConfetti() {
+            const emojis = ['❤️', '💖', '💕', '🌹', '🥰', '🍫'];
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                heart.style.position = 'fixed';
+                const randomPos = Math.random();
+                if (randomPos < 0.5) {
+                    heart.style.left = Math.random() * 25 + 'vw'; 
+                } else {
+                    heart.style.left = (Math.random() * 25 + 75) + 'vw'; 
+                }
+                heart.style.top = '-20px';
+                heart.style.fontSize = Math.random() * 30 + 15 + 'px';
+                heart.style.zIndex = '1'; 
+                heart.style.animation = 'fall 3s linear forwards';
+                heart.style.pointerEvents = 'none';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }, 150);
+            if (!document.getElementById('confettiStyle')) {
+                const style = document.createElement('style');
+                style.id = 'confettiStyle';
+                style.innerHTML = `@keyframes fall { to { transform: translateY(105vh) rotate(360deg); opacity: 0; } }`;
+                document.head.appendChild(style);
+            }
+        }
+    </script>
+</body>
+</html>
